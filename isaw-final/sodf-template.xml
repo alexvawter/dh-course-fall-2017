@@ -18,8 +18,40 @@
    </teiHeader>
    <text>
       <body>
-         <div>
-            <p></p>
+         <!-- How to add a new set of phrases of a desert father, n="father's name" (retain <div> here)-->
+         <div type="section" n="Poemen">
+            <p>
+               
+            </p>
+         </div>
+         <!-- How to mark a conversation between two monks-->
+         <div type="add-relation">
+            <p>
+               <!-- add this inside <q></q> that preserves the relation-->
+               <listPerson>
+                  <person><persName ref="#m1"></persName></person>
+                  <listRelation><relation type="conversation" name="monk" active="#m1" passive="#m2"/></listRelation>
+               </listPerson>
+ 
+               <!-- end here -->
+            </p>
+         </div>
+         <!-- How to mark a visit between two monks or a group of people to one monk-->
+         <div type= "relation" n="visit">
+         <p>
+            <!-- add this at the end of the section of text that preserves the relation-->
+            <listEvent>
+               <event><desc>Some brothers visted Anthony</desc></event> 
+               <listRelation><relation type="visit" name="vistor" active="#g1" passive="#m1">
+                  <desc>
+                  <placeName>Scetis<addName>Wadi El Natrun</addName>
+                     <geo>ADD LAT/LONG</geo>
+                  </placeName>
+                  </desc></relation>
+               </listRelation>
+            </listEvent> 
+            <!-- end here -->
+         </p>
          </div>
       </body>
    </text>
