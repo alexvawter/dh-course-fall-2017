@@ -49,7 +49,7 @@
                  <listEvent>
                      <event><desc>Some brothers from Scetis visted Anthony</desc></event> 
                      <listRelation>
-                         <relation type="visit" name="vistor" active="#g3" passive="m1">
+                         <relation type="visit" name="vistor" active="g3" passive="m1">
                              <desc>from
                                  <location>
                                      <placeName>Scetis<addName>Wadi El Natrun</addName><geo>30.35 30.20</geo></placeName>
