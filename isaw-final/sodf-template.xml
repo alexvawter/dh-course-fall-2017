@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-model href="http://syriaca.org/documentation/syriaca-tei-main.rnc" type="application/relax-ng-compact-syntax"?>
+<!-- be sure to use the syriaca tei when adding to the Sayings of the Desert Fathers xml or the xml won't validate! -->
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="en">
    <teiHeader>
       <fileDesc>
@@ -18,41 +19,76 @@
    </teiHeader>
    <text>
       <body>
-         <!-- How to add a new set of phrases of a desert father, n="father's name" (retain <div> here)-->
+<!-- How to add a new set of phrases of a desert father, n="father's name" -->
          <div type="section" n="Poemen">
+            <!-- always name the type attribute as "section" when adding another set of sayings -->
             <p>
-               
+               Insert Text Here.
             </p>
          </div>
-         <!-- How to mark a conversation between two monks-->
-         <div type="add-relation">
-            <p>
-               <!-- add this inside <q></q> that preserves the relation-->
-               <listPerson>
-                  <person><persName ref="#m1"></persName></person>
-                  <listRelation><relation type="conversation" name="monk" active="#m1" passive="#m2"/></listRelation>
-               </listPerson>
- 
-               <!-- end here -->
-            </p>
-         </div>
-         <!-- How to mark a visit between two monks or a group of people to one monk-->
-         <div type= "relation" n="visit">
+<!-- How to mark the name of a monk/anonymous person/place  -->
          <p>
-            <!-- add this at the end of the section of text that preserves the relation-->
-            <listEvent>
-               <event><desc>Some brothers visted Anthony</desc></event> 
-               <listRelation><relation type="visit" name="vistor" active="#g1" passive="#m1">
-                  <desc>
-                  <placeName>Scetis<addName>Wadi El Natrun</addName>
-                     <geo>ADD LAT/LONG</geo>
-                  </placeName>
-                  </desc></relation>
-               </listRelation>
-            </listEvent> 
+            <persName ref="m1">MONK</persName> 
+         <!-- the ref= attribute is assigned using m for monk, a for anonymous, and p for place, + a number (which hasn't been used yet) -->
+         <!-- i.e. p7 = place seven and m19 = monk 19 -->
+         </p>
+<!-- How to mark a quote of a desert father -->
+         <!-- surround the quote with a <q></q> tag and add a who= attribute -->
+         <!-- who= attribute should be the same (e.g. m4, a7) as the ref= attribute used with the <persName> tag -->
+         <p>He also said, 
+            <q who="m8">'If I do not cut myself off from these feelings of compassion, they will not let me be a monk.'</q>
+            <!-- the "m8" should refer to the URI/ref= of the monk who is speaking -->
+         </p>
+<!-- How to mark when a monk talks to one person (who does not reply) -->
+         <p> Abba <persName ref="m1">Anthony</persName> said to Abba <persName ref="m23">Poemen</persName>, <q who="m1">'This is the great work of a man: always to take the blame for his own sins before God and to expect temptation to his last breath.'
+            <!-- add the following inside the <q> tag like this -->
+            <listPerson>
+               <person><persName ref="m1"></persName></person>
+               <listRelation><relation type="said-to" name="monk" active="m1" passive="m23"/></listRelation>
+            </listPerson></q> 
             <!-- end here -->
          </p>
-         </div>
+<!-- How to mark a conversation between two monks-->
+         <p>
+          <!-- add this inside <q></q> (quote) that preserves the relation-->
+           <listPerson>
+             <person><persName ref="m1"></persName></person>
+               <listRelation><relation type="conversation" name="monk" active="#m1" passive="#m2"/></listRelation>
+           </listPerson>
+          <!-- end here -->
+            </p>
+<!-- How to mark a visit between two monks or a group of people to one monk-->
+         <!-- Add the following at the end of the section of text (<p>) that preserves the relation, before the </p> -->
+            <listEvent>
+               <!-- Write a brief description of the relationship the saying describes -->
+                  <event><desc>Some brothers from Scetis visted Anthony</desc></event> 
+                  <listRelation>
+                     <relation type="visited" name="vistor" active="g3" passive="m1">
+                        <desc>from
+                           <location>
+                              <placeName>Scetis<addName>Wadi El Natrun</addName></placeName>
+                              <geo>30.35 30.20</geo> 
+                           </location>
+                        </desc></relation></listRelation></listEvent>
+<!-- How to mark where a monk lives -->
+         <listEvent>
+            <event><desc>Elias lived in Egypt</desc></event> 
+            <listRelation><relation type="lived-in" name="resident" active="m7" passive="p8">
+               <desc>lived in
+                  <placeName ref="p8">Egypt<geo>30.2 31.13</geo></placeName>
+               </desc></relation>
+            </listRelation>
+         </listEvent>
+<!-- How to mark travel -->
+         <listEvent>
+            <event><desc>Bessarion and a man travel into the desert and then to Lycopolis</desc></event> 
+            <listRelation><relation type="traveled-to" name="traveler" active="m2" passive="p2">
+               <desc>
+                  <placeName>Lycopolis<geo>31.5 30.57</geo></placeName>
+               </desc></relation>
+            </listRelation>
+         </listEvent> 
+         
       </body>
    </text>
 </TEI>
